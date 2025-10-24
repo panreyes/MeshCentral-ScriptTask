@@ -359,7 +359,7 @@ function goRun() {
     var selScript = document.querySelectorAll('.liselected');
     if (selScript.length) {
       var scriptId = selScript[0].getAttribute('x-data-id');
-      if (scriptId == selScript[0].getAttribute('x-folder-id'))
+      if (scriptId == selScript[0].getAttribute('x-data-folder'))
       {
           parent.setDialogMode(2, "Oops!", 1, null, 'Please select a script. A folder is currently selected.'); 
       }
@@ -1020,3 +1020,4 @@ function redrawScriptTree() {
   
 </script>
 </html>
+
