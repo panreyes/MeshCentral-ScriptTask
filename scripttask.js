@@ -137,7 +137,7 @@ module.exports.scripttask = function (parent) {
         .then(found => {
           if (found.length != 1) { res.sendStatus(401); return; }
           var file = found[0];
-          res.setHeader('Content-disposition', 'attachment; filename=' + file.name);
+          res.setHeader('Content-disposition', 'attachment; filename=' + file.name + "." + file.filetype + ".txt");
           res.setHeader('Content-type', 'text/plain');
           //var fs = require('fs');
           res.send(file.content);
