@@ -285,6 +285,26 @@ module.exports.CreateDB = function(meshserver) {
           }
           obj.initFunctions();
     });  
+    } else if (meshserver.args.mariadb) { // use MariaDB
+        var mariadb = null;
+        try { mariadb = require('mariadb'); } catch (e) { console.log('PLUGIN: ScriptTask: mariadb module is required but not found.'); }
+        if (mariadb != null) {
+            var NEMariaDB = require(__dirname + '/nemariadb.js');
+            var m_options = meshserver.args.mariadb;
+            if (typeof m_options === 'string') {
+                try {
+                    const urlToConfig = require('mariadb/lib/misc/url-to-config.js');
+                    m_options = urlToConfig(m_options);
+                } catch (e) {
+                    // Fallback to letting createPool parse it directly if supported
+                }
+            }
+            if (meshserver.args.mariadbname && typeof m_options === 'object') m_options.database = meshserver.args.mariadbname;
+            var pool = mariadb.createPool(m_options);
+            obj.scriptFile = new NEMariaDB(pool);
+            formatId = function(id) { return id; };
+            obj.initFunctions();
+        }
     } else { // use NeDb
         try { Datastore = require('@seald-io/nedb'); } catch (ex) { } // This is the NeDB with Node 23 support.
         if (Datastore == null) {
