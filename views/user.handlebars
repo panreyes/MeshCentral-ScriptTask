@@ -1,6 +1,57 @@
 <html>
 <head>
     <script type="text/javascript" src="scripts/common-0.0.1.js"></script>
+    <link keeplink="1" type="text/css" href="styles/style-bootstrap.css" media="screen" rel="stylesheet" title="CSS">
+    <link type="text/css" href="styles/ol.css" media="screen" rel="stylesheet" title="CSS">
+    <link type="text/css" href="styles/ol3-contextmenu.min.css" media="screen" rel="stylesheet" title="CSS">
+    <link type="text/css" href="styles/xterm.css" media="screen" rel="stylesheet" title="CSS">
+    <link type="text/css" href="styles/flatpickr.min.css" media="screen" rel="stylesheet" title="CSS">
+    <link id="theme-stylesheet" href="styles/bootstrap.css" rel="stylesheet" title="CSS">
+    <link href="styles/select2.min.css" rel="stylesheet" title="CSS">
+    <link href="styles/select2-bootstrap-5-theme.min.css" rel="stylesheet" title="CSS">
+    <link type="text/css" href="styles/custom.css" media="screen" rel="stylesheet" title="CSS">
+    <link rel="apple-touch-icon" href="/favicon-303x303.png">
+    <script type="text/javascript" src="scripts/common-0.0.1.js"></script>
+    <script type="text/javascript" src="scripts/meshcentral.js"></script>
+    <script type="text/javascript" src="scripts/amt-0.2.0.js"></script>
+    <script type="text/javascript" src="scripts/amt-wsman-0.2.0.js"></script>
+    <script type="text/javascript" src="scripts/amt-desktop-0.0.2.js"></script>
+    <script type="text/javascript" src="scripts/amt-terminal-0.0.2.js"></script>
+    <script type="text/javascript" src="scripts/zlib.js"></script>
+    <script type="text/javascript" src="scripts/zlib-inflate.js"></script>
+    <script type="text/javascript" src="scripts/zlib-adler32.js"></script>
+    <script type="text/javascript" src="scripts/zlib-crc32.js"></script>
+    <script type="text/javascript" src="scripts/amt-redir-ws-0.1.0.js"></script>
+    <script type="text/javascript" src="scripts/amt-wsman-ws-0.2.0.js"></script>
+    <script type="text/javascript" src="scripts/agent-redir-ws-0.1.1.js"></script>
+    <script type="text/javascript" src="scripts/agent-redir-rtc-0.1.0.js"></script>
+    <script type="text/javascript" src="scripts/agent-desktop-0.0.2.js"></script>
+    <script type="text/javascript" src="scripts/agent-rdp-0.0.1.js"></script>
+    <script type="text/javascript" src="scripts/qrcode.min.js"></script>
+    <script type="text/javascript" src="scripts/xterm.js"></script>
+    <script type="text/javascript" src="scripts/xterm-addon-fit.js"></script>
+    <script type="text/javascript" src="scripts/flatpickr.js"></script>
+    <script type="text/javascript" src="mstsc/mstsc.js"></script>
+    <script type="text/javascript" src="mstsc/keyboard.js"></script>
+    <script type="text/javascript" src="mstsc/rle.js"></script>
+    <script type="text/javascript" src="mstsc/client.js"></script>
+    <script type="text/javascript" src="mstsc/canvas.js"></script>
+    <script type="text/javascript" src="scripts/jquery.js"></script>
+    <script type="text/javascript" src="scripts/bootstrap.js"></script>
+    <script type="text/javascript" src="scripts/fontawesome/all.min.js"></script>
+    <script type="text/javascript" src="scripts/select2.full.min.js"></script>
+    <script type="text/javascript" src="scripts/themes/theme-switcher.js"></script>
+    <script keeplink="1" type="text/javascript" src="scripts/u2f-api.js"></script>
+    <script keeplink="1" type="text/javascript" src="scripts/charts.js"></script>
+    <script keeplink="1" type="text/javascript" src="scripts/moment.js"></script>
+    <script keeplink="1" type="text/javascript" src="scripts/chartjs-adapter-moment.js"></script>
+    <script keeplink="1" type="text/javascript" src="scripts/filesaver.min.js"></script>
+    <script keeplink="1" type="text/javascript" src="scripts/ol.js"></script>
+    <script keeplink="1" type="text/javascript" src="scripts/ol3-contextmenu.js"></script>
+    <script keeplink="1" type="text/javascript" src="scripts/purify.js"></script>
+    <script keeplink="1" type="text/javascript" src="scripts/marked.js"></script>
+    <script type="text/javascript" src="scripts/custom.js"></script>
+
 </head>
 <style>
     body {
@@ -31,12 +82,14 @@
       width: 35%;
       height: 100%;
       float: left;
+	  padding-right: 20px;
     }
     #infoContainer {
       width: 65%;
       height: 100%;
       float: right;
       border-left: 1px;
+	  margin-left: 20px;
     }
     .lifolder {
       background: url(data:image/gif;base64,R0lGODlhEAAQAJEDAM2xV/Xur+XPgP///yH5BAEAAAMALAAAAAAQABAAAAJD3ISZIGHWUGihznesYDYATFVM+D2hJ4lgN1olxALAtAlmPCJvuMmJd6PJckDYwicrHhTD5o7plJmg0Uc0asNMkphHAQA7) no-repeat 16px;
@@ -57,10 +110,10 @@
     }
     #controlBar {
       width: 100%;
-      height: 20px;
-      border-bottom: 1px solid black;
+      border-bottom: 1px solid #c0c0c0;
       font-size: smaller;
       margin-bottom: 7px;
+	  padding: 5px 10px;
     }
     #controlBar span {
       cursor: pointer;
@@ -70,7 +123,7 @@
     #controlBar > span:nth-child(n+2) {
       border-left: 1px solid black;
     }
-    .infoBar {
+    .infoBara {
       background-color: #777;
       color: white;
       cursor: pointer;
@@ -80,6 +133,9 @@
       text-align: left;
       outline: none;
       font-size: 15px;
+	  border-radius: 10px;
+	  margin-bottom: 10px;
+	  margin-top: 10px;
     }
     .infoBar.active, .infoBar:hover {
       background-color: #555;
@@ -92,6 +148,10 @@
         width: 100%;
     }
     #nHistTbl td, #sHistTbl td, #nSchTbl td, #sSchTbl td, #varTbl td {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    #nHistTbl tr, #sHistTbl tr, #nSchTbl tr, #sSchTbl tr, #varTbl tr {
         padding-left: 5px;
         padding-right: 5px;
     }
@@ -175,26 +235,34 @@
 </style>
 <body onload="doOnLoad();">
 <div id="scriptTaskUser">
+  <!-- 
   <div id="dropBlock" style="display:none;"><b>&checkmark;</b></div>
   Upload: <input type="file" id="files" name="files[]" multiple onchange="fileUpload();"/>
   <hr />
+  -->
   <div id="controlBar">
-    <span onclick="goNew();">New</span>
-    <span onclick="goRename();">Rename</span>
-    <span onclick="goEdit();">Edit</span>
-    <span onclick="goDelete();">Delete</span>
-    <span onclick="goNewFolder();">New Folder</span>
-    <span onclick="goDownload();">Download</span>
-    <span onclick="goRun();">Run</span>
+    <a href="#" class="btn btn-primary btn-sm" onclick="goNew();">New</a>
+    <a href="#" class="btn btn-primary btn-sm" onclick="goNewFolder();">New Folder</a>
+    <a href="#" class="btn btn-primary btn-sm" onclick="goEdit();">Edit</a>
+    <a href="#" class="btn btn-primary btn-sm" onclick="goRename();">Rename</a>
+    <a href="#" class="btn btn-primary btn-sm" onclick="goDownload();">Download</a>
+    <a href="#" class="btn btn-danger btn-sm" onclick="goDelete();">Delete</a>
+    <a href="#" class="btn btn-primary btn-sm" onclick="goRun();">Run now</a>
   </div>
   <div id="scripts_endpoints">
     <div id="scriptContainer">
     </div>
     <div id="infoContainer">
       <div id="history">
-          <div class="infoBar">Advanced Run</div>
-          <div id="multiRun" class="infoContent">
-              <div style="padding-top: 15px;"><button onclick="goAdvancedRun();">Schedule on Selected</button></div>
+          <a href="#" id="btn_multiRun" class="infoBar btn btn-secondary btn-sm">Advanced Run</a>
+          <a href="#" id="btn_nSch" class="infoBar btn btn-secondary btn-sm">Node Schedules</a>
+          <a href="#" id="btn_nodeHistory" class="infoBar btn btn-secondary btn-sm">Node History</a>
+          <a href="#" id="btn_variables" class="infoBar btn btn-secondary btn-sm">Variables</a>
+		  <a href="#" id="btn_sSch" class="infoBar btn btn-secondary btn-sm">Script Schedules</a>
+		  <a href="#" id="btn_scriptHistory" class="infoBar btn btn-secondary btn-sm">Script History</a>
+          
+		  <div id="multiRun" class="infoContent">
+              <div style="padding-top: 15px;"><button class="btn btn-primary btn-sm" onclick="goAdvancedRun();">Schedule on Selected</button></div>
               <div class="tblFloat">
                   <table id="mRunTbl" cellspacing="0" cellpadding="0">
                       <tr><td><label><input type="checkbox" onclick="selAllNodes(this);"> Select All</label></td></tr>
@@ -211,37 +279,32 @@
                   </table>
               </div>
           </div>
-          <div class="infoBar">Node Schedules</div>
           <div id="nSch" class="infoContent">
               <table id="nSchTbl" cellspacing="0" cellpadding="0">
                   <th>Script</th><th>Author</th><th>Every</th><th>Starting</th><th>Ending</th><th>Last Run</th><th>Next Run</th><th>Action</th>
               </table>
           </div>
-          <div class="infoBar">Script Schedules</div>
           <div id="sSch" class="infoContent">
               <table id="sSchTbl" cellspacing="0" cellpadding="0">
                   <th>Node</th><th>Author</th><th>Every</th><th>Starting</th><th>Ending</th><th>Last Run</th><th>Next Run</th><th>Action</th>
               </table>
           </div>
-        <div class="infoBar">Node History</div>
         <div id="nodeHistory" class="infoContent">
             <table id="nHistTbl" cellspacing="0" cellpadding="0">
                 <th>Time</th><th>Run By</th><th>Script</th><th>Status</th><th>Return Value</th>
             </table>
         </div>
-        <div class="infoBar">Script History</div>
         <div id="scriptHistory" class="infoContent">
             <table id="sHistTbl" cellspacing="0" cellpadding="0">
                 <th>Time</th><th>Run By</th><th>Node</th><th>Status</th><th>Return Value</th>
             </table>
         </div>
-        <div class="infoBar">Variables</div>
         <div id="variables" class="infoContent">
             <table id="varTbl" cellspacing="0" cellpadding="0">
                 <th>Variable Name</th><th>Value</th><th>Scope</th><th>Scope Target</th><th>Action</th>
             </table>
             <br />
-            <span class="flink" onclick="newVar();return false;">[+]</span>
+            <a href="#" class="btn btn-sm btn-primary" onclick="newVar();return false;">Add variable</a>
         </div>
       </div>
       
@@ -272,6 +335,7 @@ function updateNodesTable() {
   });
   var tagList = [];
   var nodeRowIns = document.querySelector('#mRunTbl');
+  parent.nodes.sort((a,b) => (a.name > b.name) ? 1 : -1);
   parent.nodes.forEach(function(i) {
       var item = {...i, ...{}};
       if (item.mtype == 2) {
@@ -286,6 +350,17 @@ function updateNodesTable() {
       }
   });
   tagList = tagList.filter(onlyUnique); tagList = tagList.sort();
+  // parent.meshes.sort((a,b) => a.name.localeCompare(b.name));
+  
+  // sort meshes by name
+  const sortedEntries = Object.entries(parent.meshes).sort(([, v1], [, v2]) => {
+    const a = v1 && v1.name ? v1.name : "";
+    const b = v2 && v2.name ? v2.name : "";
+    return a > b ? 1 : a < b ? -1 : 0;
+  });
+
+  parent.meshes = Object.fromEntries(sortedEntries);
+
   var nodeRowIns = document.querySelector('#mRunTblMesh');
   for (const i in parent.meshes) { // parent.meshes.forEach(function(i) {
       var item = {...parent.meshes[i], ...{}};
@@ -420,14 +495,27 @@ function goAdvancedRun() {
 var coll = document.getElementsByClassName("infoBar");
 for (var i = 0; i < coll.length; i++) {
   coll[i].addEventListener("click", function() {
+    for (var j = 0; j < coll.length; j++) {
+	    coll[j].classList.remove("active");
+		//coll[j].nextElementSibling.style.display = "none";
+	}
+	$('#multiRun').hide(200);
+	$('#nSch').hide(200);
+	$('#nodeHistory').hide(200);
+	$('#variables').hide(200);
+	$('#sSch').hide(200);
+	$('#scriptHistory').hide(200);
+	
     this.classList.toggle("active");
-    var content = this.nextElementSibling;
+    //var content = this.nextElementSibling;
+	// var content = this;
+	var content = document.getElementById(this.id.slice(this.id.lastIndexOf('_') + 1));
     if (content.style.display === "block") {
       content.style.display = "none";
     } else {
       content.style.display = "block";
     }
-    content.style.maxHeight = '300px';
+    content.style.maxHeight = '400px';
     content.style.overflowY = 'scroll';
     resizeIframe();
   });
@@ -441,6 +529,7 @@ function goDownload() {
   if (id == sel.getAttribute('x-data-folder')) return;
   window.location = '/pluginadmin.ashx?pin=scripttask&user=1&dl='+id;
 }
+
 function addScript(name, content, path) {
   // file type testing
   var n = name.split('.').pop().toLowerCase();
@@ -452,6 +541,7 @@ function addScript(name, content, path) {
     parent.setDialogMode(2, "Oops!", 1, null, 'Currently accepted filetypes are .ps1, .bat, and bash scripts.'); 
   }
 }
+
 function redrawScriptTree() {
   var lastpath = null;
   var str = '';
@@ -513,14 +603,14 @@ function redrawScriptTree() {
               message.event.nodeHistory.forEach(function(nh) {
                  nh.latestTime = Math.max(nh.completeTime, nh.queueTime, nh.dispatchTime, nh.dontQueueUntil); 
               });
-              message.event.nodeHistory.sort((a, b) => (a.latestTime < b.latestTime) ? 1 : -1);
+              message.event.nodeHistory.sort((a, b) => a.name.localeCompare(b.name));
               message.event.nodeHistory.forEach(function(nh) {
                   nh = prepHistory(nh);
                   let tpl = '<td>' + nh.timeStr + '</td> \
                     <td>' + nh.runBy + '</td> \
                     <td>' + nh.scriptName + '</td> \
                     <td>' + nh.statusTxt + '</td> \
-                    <td>' + nh.returnTxt + '</td>';
+                    <td><pre>' + nh.returnTxt + '</pre></td>';
                   let tr = nHistTbl.insertRow(-1);
                   tr.innerHTML = tpl;
                   tr.classList.add('stNHRow');
@@ -548,7 +638,7 @@ function redrawScriptTree() {
                     <td>' + nh.runBy + '</td> \
                     <td>' + nNames[nh.node] + '</td> \
                     <td>' + nh.statusTxt + '</td> \
-                    <td>' + nh.returnTxt + '</td>';
+                    <td><pre>' + nh.returnTxt + '</pre></td>';
                   let tr = sHistTbl.insertRow(-1);
                   tr.innerHTML = tpl;
                   tr.classList.add('stSHRow');
@@ -598,6 +688,7 @@ function redrawScriptTree() {
                   break;
                   case 'script':
                       var s = scriptTree.filter(obj => { return obj._id === vd.scopeTarget })[0]
+					  if (s === undefined) { return; }
                       vd.scopeTargetHtml = '<span title="' + s.path + '">' + s.name + '</span>';
                       vd.scopeTargetTxt = s.name;
                   break;
@@ -606,8 +697,14 @@ function redrawScriptTree() {
                   break;
                   case 'node':
                       var n = parent.nodes.filter(obj => { return obj._id === vd.scopeTarget })[0]
-                      vd.scopeTargetHtml = '<span title="' + n.meshnamel + '">' + n.name + '</span>';
-                      vd.scopeTargetTxt = n.name;
+					  if (n === undefined) {
+					    console.log("No existe el nodo " + vd.scopeTarget);
+						parent.meshserver.send({ action: 'plugin', plugin: 'scripttask', pluginaction: 'deleteVar', id: vd._id, currentNodeId: parent.currentNode._id });
+						vd = null;
+						return;
+					  }
+					  vd.scopeTargetHtml = '<span title="' + n.meshnamel + '">' + n.name + '</span>';
+					  vd.scopeTargetTxt = n.name;
                   break;
                   default:
                       vd.scopeTargetTxt = vd.scopeTargetHtml = 'N/A';
@@ -639,10 +736,11 @@ function redrawScriptTree() {
       var el = scriptEl[0];
       scopeTargetScriptId = el.getAttribute('x-data-id');
       variables.forEach(function(vd) {
+		  if (vd === null) return;
           if (vd.scope == 'script' && vd.scopeTarget != scopeTargetScriptId) return;
           if (vd.scope == 'mesh' && vd.scopeTarget != parent.currentNode.meshid) return;
           if (vd.scope == 'node' && vd.scopeTarget != parent.currentNode._id) return;
-          let actionHtml = '<span class="flink" onclick="editVar(this);">Edit</span> <span class="flink" onclick="delVar(this);">Delete</span>';
+          let actionHtml = '<a href="#" class="btn btn-primary btn-xs" onclick="editVar(this);">Edit</a> <a href="#" class="btn btn-primary btn-xs" onclick="delVar(this);">Delete</a>';
           let tpl = '<td>' + vd.name + '</td> \
             <td>' + vd.value + '</td> \
             <td>' + vd.scopeTxt + '</td> \
@@ -689,6 +787,7 @@ function redrawScriptTree() {
               });
           }
       }
+
       var currentScript = document.getElementById('scriptHistory');
       var currentScriptId = currentScript.getAttribute('x-data-id');
       if (message.event.scriptSchedule != null && message.event.scriptId == currentScriptId) {
@@ -1020,4 +1119,3 @@ function redrawScriptTree() {
   
 </script>
 </html>
-
