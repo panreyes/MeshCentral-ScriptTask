@@ -962,7 +962,7 @@
     if (nh.nextRun == null) nh.nextRunTxt = 'Never';
     if (nh.nextRun < nh.lastRun) nh.nextRunTxt = 'Running now';
 
-    nh.actionTxt = '<span class="delSched" onclick="deleteSchedule(this);">Delete</span>';
+    nh.actionTxt = '<span class="delSched btn btn-danger btn-xs" onclick="deleteSchedule(this);">Delete</span>';
     return nh;
   }
   function secondsToHms(d) {
