@@ -17,6 +17,32 @@ var debug_flag = false;
 var runningJobs = [];
 var runningJobPIDs = {};
 
+var jobPingTimer = null;
+
+function startJobPing() {
+    if (jobPingTimer == null) {
+        jobPingTimer = setInterval(function() {
+            if (runningJobs.length == 0) {
+                clearInterval(jobPingTimer);
+                jobPingTimer = null;
+                return;
+            }
+            runningJobs.forEach(function(jobId) {
+                try {
+                    mesh.SendCommand({ 
+                        "action": "plugin", 
+                        "plugin": "scripttask",
+                        "pluginaction": "jobRunningPing",
+                        "jobId": jobId,
+                        "sessionid": _sessionid,
+                        "tag": "console"
+                    });
+                } catch(e){}
+            });
+        }, 60000); // 1 minute
+    }
+}
+
 var dbg = function(str) {
     if (debug_flag !== true) return;
     var fs = require('fs');
@@ -460,6 +486,7 @@ function runScript(sObj, jObj) {
         sObj.content = sObj.content.replace(new RegExp('#(.*?)#', 'g'), 'VAR_NOT_FOUND');
     }
     runningJobs.push(jObj.jobId);
+    startJobPing();
     dbg('Running Script '+ sObj._id);
     switch (sObj.filetype) {
         case 'ps1':
