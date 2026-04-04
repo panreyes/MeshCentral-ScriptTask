@@ -25,7 +25,7 @@ class NEMariaDB {
         this.pool.query("CREATE TABLE IF NOT EXISTS plugin_scripttask (id VARCHAR(128) PRIMARY KEY, doc JSON)")
             .catch(err => { console.log("PLUGIN: ScriptTask: Error creating database table", err); });
 
-        this.pool.query("CREATE TABLE IF NOT EXISTS plugin_scripttask_jobs (id VARCHAR(128) PRIMARY KEY, type VARCHAR(64) DEFAULT 'job', queueTime INT, dontQueueUntil INT, dispatchTime INT, completeTime INT, lastPing INT, node VARCHAR(256), scriptId VARCHAR(128), scriptName VARCHAR(512), replaceVars JSON, returnVal TEXT, errorVal TEXT, returnAct VARCHAR(256), runBy VARCHAR(256), jobSchedule VARCHAR(128))")
+        this.pool.query("CREATE TABLE IF NOT EXISTS plugin_scripttask_jobs (id VARCHAR(128) PRIMARY KEY, type VARCHAR(64) DEFAULT 'job', queueTime INT, dontQueueUntil INT, dispatchTime INT, completeTime INT, lastPing INT, node VARCHAR(256), scriptId VARCHAR(128), scriptName VARCHAR(512), replaceVars JSON, returnVal MEDIUMTEXT, errorVal TEXT, returnAct VARCHAR(256), runBy VARCHAR(256), jobSchedule VARCHAR(128))")
             .catch(err => { console.log("PLUGIN: ScriptTask: Error creating jobs table", err); });
     }
 
